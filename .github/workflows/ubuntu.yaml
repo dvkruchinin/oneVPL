@@ -1,6 +1,10 @@
 name: ubuntu-20.04
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
 
 env:
   CFLAGS: -O2 -Wformat -Wformat-security -Wall -D_FORTIFY_SOURCE=2 -fstack-protector-strong
