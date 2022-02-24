@@ -16,7 +16,5 @@ jobs:
         python3 -m venv .env
         source ./.env/bin/activate
         pip3 install -r requirements-dev.txt
-        echo "###############################"
-        git log -1 --pretty=%B
-        bash script/lint
+        pre-commit run --all-files
 
