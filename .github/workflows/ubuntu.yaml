@@ -72,6 +72,10 @@ jobs:
         cmake -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" -DCMAKE_CXX_FLAGS_RELEASE="$CFLAGS" ..
         make -j$(nproc)
         sudo make install
+        cd ..
+    - name: run unit tests
+      run: |
+        bash script/test
 
   gcc10:
     runs-on: ubuntu-20.04
@@ -125,3 +129,7 @@ jobs:
         cmake -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" -DCMAKE_CXX_FLAGS_RELEASE="$CFLAGS"  ..
         make -j$(nproc)
         sudo make install
+        cd ..
+    - name: run unit tests
+      run: |
+        bash script/test
