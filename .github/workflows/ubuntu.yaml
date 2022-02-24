@@ -66,6 +66,8 @@ jobs:
         make -j$(nproc)
         sudo make install
     - name: build libvpl
+      env:
+        VPL_INSTALL_DIR: libvpl/_vplbuild
       run: |
         cd libvpl
         bash script/bootstrap
@@ -122,6 +124,8 @@ jobs:
         make -j$(nproc)
         sudo make install
     - name: build libvpl
+      env:
+        VPL_INSTALL_DIR: libvpl/_vplbuild
       run: |
         cd libvpl
         bash script/bootstrap
