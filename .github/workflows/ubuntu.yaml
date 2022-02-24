@@ -68,13 +68,14 @@ jobs:
     - name: build libvpl
       run: |
         cd libvpl
-        mkdir build && cd build
+        mkdir _build && cd _build
         cmake -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" -DCMAKE_CXX_FLAGS_RELEASE="$CFLAGS" ..
         make -j$(nproc)
         sudo make install
-        cd ..
     - name: run unit tests
       run: |
+        cd libvpl
+        pwd
         bash script/test
 
   gcc10:
@@ -125,11 +126,12 @@ jobs:
     - name: build libvpl
       run: |
         cd libvpl
-        mkdir build && cd build
+        mkdir _build && cd _build
         cmake -DCMAKE_C_FLAGS_RELEASE="$CFLAGS" -DCMAKE_CXX_FLAGS_RELEASE="$CFLAGS"  ..
         make -j$(nproc)
         sudo make install
-        cd ..
     - name: run unit tests
       run: |
+        cd libvpl
+        pwd
         bash script/test
