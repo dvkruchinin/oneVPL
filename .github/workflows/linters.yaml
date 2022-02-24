@@ -1,0 +1,17 @@
+name: linters check
+
+on: [ pull_request ]
+
+jobs:
+  lintes:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: checkout libvpl
+      uses: actions/checkout@v2
+      with:
+        path: libvpl
+    - name: run linters
+      run: |
+        cd libvpl
+        bash script/lint
+
