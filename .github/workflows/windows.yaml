@@ -1,0 +1,25 @@
+name: windows-2019
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+jobs:
+  gcc10:
+    runs-on: windows-2019
+    steps:
+    - name: checkout libvpl
+      uses: actions/checkout@v2
+      with:
+        path: libvpl
+    - name: checkout libva
+      uses: actions/checkout@v2
+      with:
+        repository: intel/libva
+        path: libva
+    - name: testing WF
+      run: |
+        cd libvpl
+        pwd
