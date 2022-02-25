@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  MVS-2019:
+  MVS-2020:
     runs-on: windows-2022
     steps:
     - name: checkout libvpl
@@ -27,3 +27,7 @@ jobs:
       run: |
         cd libvpl
         .\script\test
+    - name: Read LastTest log
+      if: failure()
+      run: |
+        cat ./_build/Testing/Temporary/LastTest.log
