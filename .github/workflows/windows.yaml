@@ -26,3 +26,7 @@ jobs:
         script/bootstrap
         script/build
         script/install
+    - name: run unit tests
+      run: |
+        cd libvpl
+        script/test
