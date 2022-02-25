@@ -23,10 +23,12 @@ jobs:
       run: |
         cd libvpl
         set VPL_INSTALL_DIR=%cd%\_vplbuild
-        script/bootstrap
-        script/build
-        script/install
+        script\bootstrap
+        script\build
+        script\install
+      shell: cmd
     - name: run unit tests
       run: |
         cd libvpl
-        script/test
+        script\test
+      shell: cmd
