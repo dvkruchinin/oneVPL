@@ -1,4 +1,4 @@
-name: windows-2019
+name: windows-2022
 
 on:
   push:
@@ -7,26 +7,23 @@ on:
   pull_request:
 
 jobs:
-  gcc10:
-    runs-on: windows-2019
+  MVS-2019:
+    runs-on: windows-2022
     steps:
     - name: checkout libvpl
       uses: actions/checkout@v2
       with:
         path: libvpl
-    - name: checkout libva
-      uses: actions/checkout@v2
-      with:
-        repository: intel/libva
-        path: libva
+    - name: print tools versions
+      run: |
+        cmake --version
     - name: build libvpl
       run: |
         cd libvpl
-        Set-Variable -Name VPL_INSTALL_DIR -Value "$pwd\_vplbuild"
-        script\bootstrap
-        script\build
-        script\install
+        .\script\bootstrap
+        .\script\build
+        .\script\install
     - name: run unit tests
       run: |
         cd libvpl
-        script\test
+        .\script\test
