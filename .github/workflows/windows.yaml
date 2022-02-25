@@ -19,7 +19,10 @@ jobs:
       with:
         repository: intel/libva
         path: libva
-    - name: testing WF
+    - name: build libvpl
       run: |
         cd libvpl
-        pwd
+        set VPL_INSTALL_DIR=%cd%\_vplbuild
+        script/bootstrap
+        script/build
+        script/install
