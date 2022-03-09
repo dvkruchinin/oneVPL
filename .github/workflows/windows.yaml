@@ -27,7 +27,3 @@ jobs:
       run: |
         cd libvpl
         .\script\test
-    - name: Read LastTest log
-      if: failure()
-      run: |
-        cat ./_build/Testing/Temporary/LastTest.log
