@@ -25,7 +25,7 @@ Build the project with the following commands:
 Linux:
 ```
 cd <vpl-repo-clone-location>
-export VPL_INSTALL_DIR=`pwd`/_vplbuild
+export VPL_INSTALL_DIR=`pwd`/../_vplinstall
 mkdir _build
 mkdir $VPL_INSTALL_DIR
 cd _build
@@ -37,7 +37,7 @@ cmake --build . --config Release --target install
 Windows DOS cmd prompt:
 ```
 cd <vpl-repo-clone-location>
-set VPL_INSTALL_DIR=%cd%\_vplbuild
+set VPL_INSTALL_DIR=%cd%\..\_vplinstall
 mkdir _build
 mkdir %VPL_INSTALL_DIR%
 cd _build
@@ -48,11 +48,9 @@ cmake --build . --config Release --target install
 
 You can find the build output in the location chosen for CMAKE_INSTALL_PREFIX, VPL_INSTALL_DIR.
 
-For more build/install information see INSTALL.md
-
 ## Helper scripts and options
 
-Additionally, helper scripts are available in the `script` folder to run these cmake commands. 
+Additionally, helper scripts are available in the `script` folder to run these cmake commands.
 For more details see script/README.md
 
 You can build the project using the helper scripts with the following commands.
