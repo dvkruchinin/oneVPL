@@ -1,0 +1,24 @@
+name: linters check
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+jobs:
+  lintes:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: checkout libvpl
+      uses: actions/checkout@v2
+      with:
+        path: libvpl
+    - name: run linters
+      run: |
+        cd libvpl
+        python3 -m venv .env
+        source ./.env/bin/activate
+        pip3 install -r requirements-dev.txt
+        pre-commit run --all-files
+

@@ -1,0 +1,29 @@
+name: windows-2022
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+jobs:
+  MVS-2020:
+    runs-on: windows-2022
+    steps:
+    - name: checkout libvpl
+      uses: actions/checkout@v2
+      with:
+        path: libvpl
+    - name: print tools versions
+      run: |
+        cmake --version
+    - name: build libvpl
+      run: |
+        cd libvpl
+        .\script\bootstrap
+        .\script\build
+        .\script\install
+    - name: run unit tests
+      run: |
+        cd libvpl
+        .\script\test

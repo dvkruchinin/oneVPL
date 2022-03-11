@@ -1,0 +1,65 @@
+name: ubuntu-20.04
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+jobs:
+  gcc10:
+    runs-on: ubuntu-20.04
+    env:
+      CC: /usr/bin/gcc-10
+      CXX: /usr/bin/g++-10
+      ASM: /usr/bin/gcc-10
+    steps:
+    - name: checkout libvpl
+      uses: actions/checkout@v2
+      with:
+        path: libvpl
+    - name: checkout libva
+      uses: actions/checkout@v2
+      with:
+        repository: intel/libva
+        path: libva
+    - name: install prerequisites
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+          cmake \
+          libdrm-dev \
+          libegl1-mesa-dev \
+          libgl1-mesa-dev \
+          libx11-dev \
+          libx11-xcb-dev \
+          libxcb-dri3-dev \
+          libxcb-present-dev \
+          libxext-dev \
+          libxfixes-dev \
+          libwayland-dev \
+          ocl-icd-opencl-dev \
+          opencl-clhpp-headers \
+          make
+    - name: print tools versions
+      run: |
+        cmake --version
+        $CC --version
+        $CXX --version
+    - name: build libva
+      run: |
+        cd libva
+        ./autogen.sh --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu
+        make -j$(nproc)
+        sudo make install
+    - name: build libvpl
+      run: |
+        cd libvpl
+        export VPL_INSTALL_DIR=$(pwd)/_vplbuild
+        bash script/bootstrap
+        bash script/build
+        bash script/install
+    - name: run unit tests
+      run: |
+        cd libvpl
+        bash script/test
